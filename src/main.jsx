@@ -1,10 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { RouterProvider } from "react-router-dom"; // Import RouterProvider
-import router from "./routes"; // Import the router configuration
+import ReactDOM from "react-dom/client"; // Correct import for createRoot
+import App from "./App"; // Import your main App component
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+// Use createRoot to render the app into the DOM
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router} /> {/* Provide the router here */}
+    <App />
   </React.StrictMode>,
 );
