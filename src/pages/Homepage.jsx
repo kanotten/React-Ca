@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 export default function Homepage() {
   const [products, setProducts] = useState([]);
@@ -66,22 +67,21 @@ export default function Homepage() {
       </div>
 
       <div className="flex justify-center mt-6 gap-4">
-        <button
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+        <Button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
           Forrige
-        </button>
-        <button
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+        </Button>
+
+        <Button
           onClick={() =>
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
         >
           Neste
-        </button>
+        </Button>
       </div>
     </div>
   );
