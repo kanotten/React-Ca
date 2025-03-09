@@ -28,7 +28,7 @@ export default function CartPage() {
                 />
                 <div>
                   <h2 className="text-lg font-semibold">{item.title}</h2>
-                  <p>${item.price}</p>
+                  <p>{item.price} kr</p>
                 </div>
               </div>
               <Button variant="danger" onClick={() => removeFromCart(item.id)}>
@@ -37,7 +37,9 @@ export default function CartPage() {
             </div>
           ))}
 
-          <div className="mt-6 text-xl font-semibold">Total: ${totalPrice}</div>
+          <div className="mt-6 text-xl font-semibold">
+            Total: {totalPrice} kr
+          </div>
 
           <div className="flex gap-4 mt-4">
             <Button variant="danger" onClick={clearCart}>
