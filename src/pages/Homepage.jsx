@@ -1,9 +1,7 @@
 export default function Homepage() {
-  console.log("Homepage is rendering"); // Flytt console.log() ut av return
-
   return (
-    <h1 className="text-3xl font-bold text-blue-500">
-      Welcome to the Homepage
-    </h1>
+    <div className="bg-green-500 text-white p-10 text-center">
+      Hvis denne boksen er grønn, fungerer Tailwind!
+    </div>
   );
 }
