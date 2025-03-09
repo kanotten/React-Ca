@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useCart } from "../context/useCart";
 import Button from "../components/Button";
 
@@ -7,9 +7,10 @@ export default function ProductPage() {
   const { id } = useParams();
   const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [addedCount, setAddedCount] = useState(0);
-  const timerRef = useRef(null);
+  const [showMessage, setShowMessage] = useState(false);
+  const [messageCount, setMessageCount] = useState(0);
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -24,22 +25,14 @@ export default function ProductPage() {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    if (product) {
-      addToCart(product);
-      setAddedCount((prevCount) => prevCount + 1);
-      setShowConfirmation(true);
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setMessageCount((prev) => prev + 1);
+    setShowMessage(true);
 
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-
-      timerRef.current = setTimeout(() => {
-        setShowConfirmation(false);
-        setAddedCount(0);
-        timerRef.current = null;
-      }, 3000);
-    }
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 3000);
   };
 
   if (!product) {
@@ -48,23 +41,28 @@ export default function ProductPage() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
+      <Button variant="secondary" onClick={() => navigate(-1)} className="mb-4">
+        Back
+      </Button>
       <h1 className="text-3xl font-semibold mb-4">{product.title}</h1>
       <img
         src={product.image.url}
         alt={product.title}
         className="rounded-lg mb-4"
       />
-      <p className="text-lg font-semibold mb-2">${product.price}</p>
+      <p className="text-lg font-semibold mb-2">{product.price} kr</p>
       <p>{product.description}</p>
 
-      <Button variant="success" onClick={handleAddToCart}>
-        Add to Cart
-      </Button>
+      <div className="flex gap-4 mt-6">
+        <Button variant="primary" onClick={() => handleAddToCart(product)}>
+          Add to Cart
+        </Button>
+      </div>
 
-      {showConfirmation && (
-        <div className="mt-4 p-2 bg-green-100 text-green-700 rounded">
-          Product added to cart {addedCount}{" "}
-          {addedCount === 1 ? "time" : "times"}!
+      {showMessage && (
+        <div className="bg-green-200 text-green-800 p-4 rounded-lg mt-4">
+          Product added to cart {messageCount}{" "}
+          {messageCount > 1 ? "times" : "time"}
         </div>
       )}
     </div>
