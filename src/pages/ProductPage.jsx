@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 
-export default function ProductPage() {
+const ProductPage = () => {
   const { id } = useParams();
-  return <h1>Product Page - Product ID: {id}</h1>;
-}
+
+  return <div>Produkt-ID: {id}</div>;
+};
+
+export default ProductPage;
