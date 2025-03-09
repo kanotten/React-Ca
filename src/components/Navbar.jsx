@@ -10,21 +10,8 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/product/1" className="hover:text-white transition-colors">
-            Product
-          </Link>
-        </li>
-        <li>
           <Link to="/cart" className="hover:text-white transition-colors">
             Cart
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/checkout-success"
-            className="hover:text-white transition-colors"
-          >
-            Checkout
           </Link>
         </li>
         <li>
