@@ -9,8 +9,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [addedCount, setAddedCount] = useState(0);
-  const timerRef = useRef(null); // 🔹 Referanse for å lagre timeout ID
-
+  const timerRef = useRef(null);
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -31,16 +30,14 @@ export default function ProductPage() {
       setAddedCount((prevCount) => prevCount + 1);
       setShowConfirmation(true);
 
-      // 🔹 Hvis det allerede er en aktiv timeout, fjern den før vi starter en ny
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
 
-      // 🔹 Start en ny timeout på 3 sekunder
       timerRef.current = setTimeout(() => {
         setShowConfirmation(false);
         setAddedCount(0);
-        timerRef.current = null; // Nullstill referansen
+        timerRef.current = null;
       }, 3000);
     }
   };
@@ -60,12 +57,10 @@ export default function ProductPage() {
       <p className="text-lg font-semibold mb-2">${product.price}</p>
       <p>{product.description}</p>
 
-      {/* 🔹 Legg til i handlekurv-knapp */}
       <Button variant="success" onClick={handleAddToCart}>
         Add to Cart
       </Button>
 
-      {/* 🔹 Bekreftelsesmelding med antall */}
       {showConfirmation && (
         <div className="mt-4 p-2 bg-green-100 text-green-700 rounded">
           Product added to cart {addedCount}{" "}

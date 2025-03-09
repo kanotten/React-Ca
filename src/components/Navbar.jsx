@@ -1,13 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/useCart";
 
 export default function Navbar() {
   const { cart } = useCart();
   const totalItems = cart.length;
-  const location = useLocation(); // 🔹 React Router Hook som oppdaterer Navbar ved ruteendring
 
   return (
-    <nav key={location.pathname} className="bg-gray-900 text-white p-4">
+    <nav className="bg-gray-900 text-white p-4">
       <ul className="flex justify-center gap-6 text-gray-400">
         <li>
           <Link to="/" className="hover:text-white transition-colors">

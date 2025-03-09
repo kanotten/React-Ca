@@ -3,13 +3,11 @@ import { createContext, useState, useEffect } from "react";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  // 🔹 Load cart from localStorage (or default to empty array)
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  // 🔹 Save cart to localStorage whenever it updates
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -32,7 +30,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem("cart"); // 🔹 Ensures localStorage is cleared
+    localStorage.removeItem("cart");
   };
 
   return (

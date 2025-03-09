@@ -7,12 +7,11 @@ export default function CheckoutSuccessPage() {
   const { clearCart } = useCart();
 
   useEffect(() => {
-    // 🔹 Forsinker tømming av handlekurven med 100ms for å la navigasjonen fullføres
     const timer = setTimeout(() => {
       clearCart();
     }, 100);
 
-    return () => clearTimeout(timer); // 🔹 Rydder opp timer hvis komponenten unmountes
+    return () => clearTimeout(timer);
   }, [clearCart]);
 
   return (

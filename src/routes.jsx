@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "./layouts/RootLayout"; // Bruker layout-komponenten
+import RootLayout from "./layouts/RootLayout";
 import Homepage from "./pages/Homepage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
@@ -9,7 +9,7 @@ import ContactPage from "./pages/ContactPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />, // Bruker RootLayout i stedet for App
+    element: <RootLayout />,
     children: [
       { path: "/", element: <Homepage /> },
       { path: "/product/:id", element: <ProductPage /> },

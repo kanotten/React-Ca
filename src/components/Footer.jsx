@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white py-6 text-center">
       <div className="container mx-auto">
         <p className="text-sm">
-          &copy; {new Date().getFullYear()} MyStore. All rights reserved.
+          &copy; {new Date().getFullYear()} Sheikh Express. All rights reserved.
         </p>
         <nav className="mt-2">
           <ul className="flex justify-center gap-4 text-gray-400">

@@ -37,7 +37,7 @@ export default function Homepage() {
 
   return (
     <div className="p-4 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Produkter</h1>
+      <h1 className="text-3xl font-bold mb-4">Products</h1>
 
       <input
         type="text"
