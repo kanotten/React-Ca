@@ -1,6 +1,12 @@
 import { RouterProvider } from "react-router-dom";
-import router from "./routes"; // Importerer rutene
+import router from "./routes";
+import { CartProvider } from "./context/CartContext";
 
 export default function App() {
-  return <RouterProvider router={router} />; // Håndterer ruting
+  return (
+    <CartProvider>
+      {" "}
+      <RouterProvider router={router} />
+    </CartProvider>
+  );
 }

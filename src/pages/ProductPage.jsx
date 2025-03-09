@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useCart } from "../context/useCart";
+import Button from "../components/Button";
 
 const ProductPage = () => {
   const { id } = useParams();
+  const { addToCart } = useCart(); // 🔹 Hent addToCart fra context
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const ProductPage = () => {
   }, [id]);
 
   if (!product) {
-    return <div>Laster produkt...</div>;
+    return <div>Loading Product...</div>;
   }
 
   return (
@@ -33,6 +36,10 @@ const ProductPage = () => {
       />
       <p className="text-lg font-semibold mb-2">{product.price} kr</p>
       <p>{product.description}</p>
+
+      <Button variant="success" onClick={() => addToCart(product)}>
+        Legg til i handlekurv
+      </Button>
     </div>
   );
 };
