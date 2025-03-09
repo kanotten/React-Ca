@@ -41,7 +41,7 @@ export default function Homepage() {
 
       <input
         type="text"
-        placeholder="Søk etter produkter..."
+        placeholder="Search for products..."
         value={searchTerm}
         onChange={(e) => {
           setSearchTerm(e.target.value);
