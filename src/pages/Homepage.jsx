@@ -1,7 +1,11 @@
+import { useState, useEffect } from "react";
+
 export default function Homepage() {
+  const [products, setProducts] = useState([]);
+
   return (
-    <div className="bg-green-500 text-white p-10 text-center">
-      Hvis denne boksen er grønn, fungerer Tailwind!
+    <div>
+      <h1 className="text-2xl font-bold p-4">Produkter</h1>
     </div>
   );
 }
