@@ -7,7 +7,7 @@ export default function RootLayout() {
     <div>
       <Navbar />
       <main>
-        <Outlet /> {/* Her rendres sidene dynamisk */}
+        <Outlet /> {}
       </main>
       <Footer />
     </div>
