@@ -10,11 +10,13 @@ export default function CheckoutSuccessPage() {
   useEffect(() => {
     if (cart.length > 0) {
       setOrderSummary(cart);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         clearCart();
       }, 100);
+
+      return () => clearTimeout(timer);
     }
-  }, []);
+  }, [cart, clearCart]);
 
   const totalPrice = orderSummary.reduce((sum, item) => sum + item.price, 0);
 
