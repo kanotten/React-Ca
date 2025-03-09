@@ -1,11 +1,6 @@
-import { RouterProvider } from "react-router-dom"; // Importer RouterProvider
-import router from "./routes"; // Importer ruter
+import { RouterProvider } from "react-router-dom";
+import router from "./routes"; // Importerer rutene
 
 export default function App() {
-  return (
-    <div>
-      <RouterProvider router={router} />{" "}
-      {/* Sørg for at RouterProvider brukes her */}
-    </div>
-  );
+  return <RouterProvider router={router} />; // Håndterer ruting
 }
