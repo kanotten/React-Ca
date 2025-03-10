@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useCart } from "../context/useCart";
 import Button from "../components/Button";
+import { getDiscountedPrice } from "../utils/getDiscountedPrice";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -25,6 +26,10 @@ export default function ProductPage() {
     fetchProduct();
   }, [id]);
 
+  const { discountedPrice, originalPrice, discountPercentage } = product
+    ? getDiscountedPrice(product)
+    : {};
+
   const handleAddToCart = (product) => {
     addToCart(product);
     setMessageCount((prev) => prev + 1);
@@ -35,9 +40,7 @@ export default function ProductPage() {
     }, 3000);
   };
 
-  if (!product) {
-    return <div>Loading product...</div>;
-  }
+  if (!product) return <div>Loading product...</div>;
 
   return (
     <div className="max-w-3xl mx-auto p-6">
@@ -50,15 +53,25 @@ export default function ProductPage() {
         alt={product.title}
         className="rounded-lg mb-4"
       />
-      <p className="text-lg font-semibold mb-2">{product.price} kr</p>
+      <div className="flex items-center gap-4 mb-4">
+        {discountPercentage > 0 && (
+          <span className="text-red-500 text-sm line-through">
+            {originalPrice} kr
+          </span>
+        )}
+        <p className="text-lg font-semibold">{discountedPrice} kr</p>
+        {discountPercentage > 0 && (
+          <span className="text-teal-500 text-sm">
+            -{discountPercentage}% OFF
+          </span>
+        )}
+      </div>
       <p>{product.description}</p>
-
       <div className="flex gap-4 mt-6">
         <Button variant="primary" onClick={() => handleAddToCart(product)}>
           Add to Cart
         </Button>
       </div>
-
       {showMessage && (
         <div className="bg-green-200 text-green-800 p-4 rounded-lg mt-4">
           Product added to cart {messageCount}{" "}

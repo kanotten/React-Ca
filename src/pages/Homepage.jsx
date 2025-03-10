@@ -1,6 +1,28 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import { getDiscountedPrice } from "../utils/getDiscountedPrice";
+
+function Price({ originalPrice, discountedPrice, discountPercentage }) {
+  return (
+    <div className="flex items-center justify-between mt-2">
+      {discountedPrice < originalPrice ? (
+        <>
+          <p className="text-gray-400 line-through">{originalPrice}</p>
+          <p className="text-xl font-semibold">{discountedPrice} kr</p>
+        </>
+      ) : (
+        <p className="text-xl font-semibold">{originalPrice} kr</p>
+      )}
+
+      {discountedPrice < originalPrice && (
+        <span className="absolute top-2 right-2 text-sm text-white bg-teal-600 py-1 px-2 rounded-md">
+          {discountPercentage}% Off
+        </span>
+      )}
+    </div>
+  );
+}
 
 export default function Homepage() {
   const [products, setProducts] = useState([]);
@@ -51,19 +73,28 @@ export default function Homepage() {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {currentProducts.map((product) => (
-          <Link key={product.id} to={`/product/${product.id}`}>
-            <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
-              <img
-                src={product.image.url}
-                alt={product.title}
-                className="object-cover h-40 w-full"
-              />
-              <h2 className="text-lg font-semibold mt-2">{product.title}</h2>
-              <p className="text-gray-600">{product.price} kr</p>
-            </div>
-          </Link>
-        ))}
+        {currentProducts.map((product) => {
+          const { discountedPrice, originalPrice, discountPercentage } =
+            getDiscountedPrice(product);
+
+          return (
+            <Link key={product.id} to={`/product/${product.id}`}>
+              <div className="relative border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+                <img
+                  src={product.image.url}
+                  alt={product.title}
+                  className="object-cover h-40 w-full"
+                />
+                <h2 className="text-lg font-semibold mt-2">{product.title}</h2>
+                <Price
+                  originalPrice={originalPrice}
+                  discountedPrice={discountedPrice}
+                  discountPercentage={discountPercentage}
+                />
+              </div>
+            </Link>
+          );
+        })}
       </div>
 
       <div className="flex justify-center mt-6 gap-4">
