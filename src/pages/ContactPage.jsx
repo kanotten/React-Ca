@@ -12,6 +12,7 @@ export default function ContactPage() {
   const [errors, setErrors] = useState({
     fullName: "",
     email: "",
+    subject: "",
     message: "",
   });
 
@@ -26,16 +27,22 @@ export default function ContactPage() {
     let formErrors = {};
 
     if (!formData.fullName) formErrors.fullName = "Full Name is required";
+    else if (!/^[A-Za-z\s]+$/.test(formData.fullName)) {
+      formErrors.fullName = "Full Name must contain only letters and spaces";
+    }
+
     if (!formData.email) formErrors.email = "Email is required";
     if (!formData.email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/))
       formErrors.email = "Invalid email format";
+
+    if (!formData.subject) formErrors.subject = "Subject is required";
+
     if (!formData.message) formErrors.message = "Message is required";
 
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
       console.log("Form submitted", formData);
-
       setFormData({ fullName: "", subject: "", email: "", message: "" });
     }
   };
@@ -73,6 +80,9 @@ export default function ContactPage() {
             onChange={handleChange}
             className="w-full p-2 border rounded mt-2"
           />
+          {errors.subject && (
+            <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+          )}
         </div>
 
         <div className="mb-4">
