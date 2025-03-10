@@ -16,6 +16,8 @@ export default function ContactPage() {
     message: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -43,6 +45,7 @@ export default function ContactPage() {
 
     if (Object.keys(formErrors).length === 0) {
       console.log("Form submitted", formData);
+      setIsSubmitted(true);
       setFormData({ fullName: "", subject: "", email: "", message: "" });
     }
   };
@@ -122,6 +125,12 @@ export default function ContactPage() {
           Submit
         </Button>
       </form>
+
+      {isSubmitted && (
+        <div className="bg-green-200 text-green-800 p-4 rounded-lg mt-4">
+          Thank you for contacting us! We will get back to you soon.
+        </div>
+      )}
     </div>
   );
 }
