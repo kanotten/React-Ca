@@ -18,15 +18,18 @@ The whole project is built using React.
 - Install npm (comes with Node.js)
 
 ### Installing Dependencies
-1. Clone the repository:
+
+1. Fork the repository on GitHub.
+
+2. Clone your forked repository to your local machine:
    ```bash
    git clone https://github.com/your-username/project-name.git
    ```
-2. Navigate to the project folder:
+3. Navigate to the project folder:
    ```bash
-   cd project-name
+   cd React-ca
    ```
-3. Install dependencies:
+4. Install dependencies:
    ```bash
    npm install
    ```
