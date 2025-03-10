@@ -13,13 +13,13 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="/contact" className="hover:text-white transition-colors">
-                Contact
+              <a href="/cart" className="hover:text-white transition-colors">
+                Cart
               </a>
             </li>
             <li>
-              <a href="/cart" className="hover:text-white transition-colors">
-                Cart
+              <a href="/contact" className="hover:text-white transition-colors">
+                Contact
               </a>
             </li>
           </ul>
