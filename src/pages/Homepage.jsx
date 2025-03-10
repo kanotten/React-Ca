@@ -71,7 +71,7 @@ export default function Homepage() {
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
-          Forrige
+          Prev
         </Button>
 
         <Button
@@ -80,7 +80,7 @@ export default function Homepage() {
           }
           disabled={currentPage === totalPages}
         >
-          Neste
+          Next
         </Button>
       </div>
     </div>
