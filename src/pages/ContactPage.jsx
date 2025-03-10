@@ -53,68 +53,61 @@ export default function ContactPage() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-semibold mb-6">Contact Us</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="fullName" className="block text-lg font-medium">
-            Full Name
-          </label>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="relative">
           <input
             type="text"
             id="fullName"
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-2"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            placeholder="Full Name"
           />
           {errors.fullName && (
             <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
           )}
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="subject" className="block text-lg font-medium">
-            Subject
-          </label>
+        <div className="relative">
           <input
             type="text"
             id="subject"
             name="subject"
             value={formData.subject}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-2"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            placeholder="Subject"
           />
           {errors.subject && (
             <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
           )}
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-lg font-medium">
-            Email
-          </label>
+        <div className="relative">
           <input
             type="email"
             id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-2"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            placeholder="Email"
+            autoComplete="email"
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
           )}
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="message" className="block text-lg font-medium">
-            Message
-          </label>
+        <div className="relative">
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full p-2 border rounded mt-2"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            placeholder="Message"
           />
           {errors.message && (
             <p className="text-red-500 text-sm mt-1">{errors.message}</p>
@@ -127,7 +120,7 @@ export default function ContactPage() {
       </form>
 
       {isSubmitted && (
-        <div className="bg-green-200 text-green-800 p-4 rounded-lg mt-4">
+        <div className="bg-teal-100 text-teal-800 p-4 rounded-lg mt-4 text-center">
           Thank you for contacting us! We will get back to you soon.
         </div>
       )}
