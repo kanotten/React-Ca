@@ -52,7 +52,9 @@ npm run dev
 - Testing includes adding items to the cart, navigating between pages, and validating the contact form.
 
 ## Deployment
-- Deployed at: [sheikhsexpress.netlify.app]
+
+- [Sheikh's Express - Live Site](https://sheikhsexpress.netlify.app/)
+
 
 ## Contributing
 Feel free to fork this repository and submit pull requests to improve the project!
